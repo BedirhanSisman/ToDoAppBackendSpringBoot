@@ -7,7 +7,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "task")
-public class Task {
+public class TaskModel {
 	
 	@Id
 	@Column(name = "task_name")
@@ -16,11 +16,11 @@ public class Task {
 	@Column(name = "completed")
 	private boolean completed;
 	
-	public Task() {
+	public TaskModel() {
 		
 	}
 	
-	public Task(String taskName, boolean completed) {
+	public TaskModel(String taskName, boolean completed) {
 		this.taskName = taskName;
 		this.completed = completed;
 	}

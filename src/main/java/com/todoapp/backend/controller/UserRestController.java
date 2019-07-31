@@ -3,32 +3,39 @@ package com.todoapp.backend.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.todoapp.backend.dao.UserRepository;
-import com.todoapp.backend.entity.User;
+import com.todoapp.backend.entity.UserModel;
+import com.todoapp.backend.service.UserService;
 
-@CrossOrigin
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
-@RequestMapping("/users")
+@RequestMapping("/api/users")
 public class UserRestController {
 	
-	private UserRepository userRepository;
-	private BCryptPasswordEncoder bCryptPasswordEncoder;
+	private UserService userService;
+	private BCryptPasswordEncoder bCryptEncoder;
 	
 	@Autowired
-	public UserRestController(UserRepository userRepository, BCryptPasswordEncoder bCryptPasswordEncoder) {
-		this.userRepository = userRepository;
-		this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+	public UserRestController(UserService userService, BCryptPasswordEncoder bCryptEncoder) {
+		this.userService = userService;
+		this.bCryptEncoder = bCryptEncoder;
 	}
 	
-	@PostMapping(value = "/sign-up")
-	public void signUp(@RequestBody User user) {
-		user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-		userRepository.save(user);
+	@PostMapping(value = "/register")
+	public void register(@RequestBody UserModel user) {
+		user.setPassword(bCryptEncoder.encode(user.getPassword()));
+		userService.save(user);
+	}
+	
+	@GetMapping(value = "/{username}")
+	public UserModel findUserByName(@PathVariable String username) {
+		return userService.findByName(username);
 	}
 	
 }

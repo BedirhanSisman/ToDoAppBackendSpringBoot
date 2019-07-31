@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.todoapp.backend.dao.TaskRepository;
-import com.todoapp.backend.entity.Task;
+import com.todoapp.backend.entity.TaskModel;
 
 @Service
 public class TaskServiceImpl implements TaskService {
@@ -20,16 +20,16 @@ public class TaskServiceImpl implements TaskService {
 	}
 
 	@Override
-	public List<Task> findAll() {
+	public List<TaskModel> findAll() {
 		return taskRepository.findAll();
 	}
 
 	@Override
-	public Task findById(String taskName) {
+	public TaskModel findById(String taskName) {
 		
-		Optional<Task> result = taskRepository.findById(taskName);
+		Optional<TaskModel> result = taskRepository.findById(taskName);
 		
-		Task task = null;
+		TaskModel task = null;
 		
 		if(result.isPresent()) {
 			task = result.get();
@@ -41,7 +41,7 @@ public class TaskServiceImpl implements TaskService {
 	}
 
 	@Override
-	public void save(Task task) {
+	public void save(TaskModel task) {
 		taskRepository.save(task);
 	}
 

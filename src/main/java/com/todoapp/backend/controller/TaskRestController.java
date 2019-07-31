@@ -13,10 +13,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.todoapp.backend.entity.Task;
+import com.todoapp.backend.entity.TaskModel;
 import com.todoapp.backend.service.TaskService;
 
-@CrossOrigin // Angular Client'ından erişime izin vermek için..
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/api/tasks")
 public class TaskRestController {
@@ -29,25 +29,25 @@ public class TaskRestController {
 	}
 
 	@GetMapping("/list")
-	public List<Task> getAllTasks() {
+	public List<TaskModel> getAllTasks() {
 		return taskService.findAll();
 	}
 	
 	@GetMapping("/list/{taskName}")
-	public Task getTaskByName(@PathVariable String taskName) {
+	public TaskModel getTaskByName(@PathVariable String taskName) {
 		return taskService.findById(taskName);
 	}
 	
 	@PostMapping("/list")
-	public Task addTask(@RequestBody Task newTask) {
-		Task taskForAdd = newTask;
+	public TaskModel addTask(@RequestBody TaskModel newTask) {
+		TaskModel taskForAdd = newTask;
 		taskService.save(taskForAdd);;
 		return taskForAdd;
 	}
 	
 	@PutMapping("/list")
-	public Task updateTask(@RequestBody Task newTask) {
-		Task taskForAdd = newTask;
+	public TaskModel updateTask(@RequestBody TaskModel newTask) {
+		TaskModel taskForAdd = newTask;
 		taskService.save(taskForAdd);;
 		return taskForAdd;
 	}

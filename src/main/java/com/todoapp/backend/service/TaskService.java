@@ -2,15 +2,15 @@ package com.todoapp.backend.service;
 
 import java.util.List;
 
-import com.todoapp.backend.entity.Task;
+import com.todoapp.backend.entity.TaskModel;
 
 public interface TaskService {
 	
-	public List<Task> findAll();
+	public List<TaskModel> findAll();
 	
-	public Task findById(String taskName);
+	public TaskModel findById(String taskName);
 	
-	public void save(Task task);
+	public void save(TaskModel task);
 	
 	public void deleteById(String taskName);
 
