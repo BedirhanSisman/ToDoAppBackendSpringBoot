@@ -1,4 +1,4 @@
-package com.todoapp.backend.controller;
+package com.todoapp.backend.app.controller;
 
 import java.util.List;
 
@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.todoapp.backend.entity.TaskModel;
-import com.todoapp.backend.service.TaskService;
+import com.todoapp.backend.app.model.TaskModel;
+import com.todoapp.backend.app.service.TaskService;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController

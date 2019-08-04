@@ -1,8 +1,8 @@
-package com.todoapp.backend.service;
+package com.todoapp.backend.app.service;
 
 import java.util.List;
 
-import com.todoapp.backend.entity.TaskModel;
+import com.todoapp.backend.app.model.TaskModel;
 
 public interface TaskService {
 	

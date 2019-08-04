@@ -1,4 +1,4 @@
-package com.todoapp.backend.service;
+package com.todoapp.backend.app.service;
 
 import java.util.List;
 import java.util.Optional;
@@ -6,8 +6,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.todoapp.backend.dao.TaskRepository;
-import com.todoapp.backend.entity.TaskModel;
+import com.todoapp.backend.app.model.TaskModel;
+import com.todoapp.backend.app.repository.TaskRepository;
 
 @Service
 public class TaskServiceImpl implements TaskService {
