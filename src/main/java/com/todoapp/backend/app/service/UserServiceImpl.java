@@ -72,5 +72,10 @@ public class UserServiceImpl implements UserService {
 		
 		return roleRespository.findById(roleId).get();
 	}
+
+	@Override
+	public UserModel getUserByUUID(String uuid) {
+		return userRepository.findByUuid(uuid);
+	}
 	
 }

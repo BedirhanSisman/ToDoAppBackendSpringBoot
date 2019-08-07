@@ -9,5 +9,7 @@ import com.todoapp.backend.app.model.UserModel;
 public interface UserRepository extends JpaRepository<UserModel, Long> {
 	
 	public UserModel findByUsername(String username);
+	
+	public UserModel findByUuid(String uuid);
 
 }

@@ -1,6 +1,7 @@
 package com.todoapp.backend.app.controller;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
@@ -44,6 +45,7 @@ public class UserRestController {
 		user.setPassword(bCryptEncoder.encode(user.getPassword()));
 		user.setRole(userService.findRoleById(1)); 	// Default Role : ROLE_USER
 		user.setEnabled(true); 						// Default Value : true
+		user.setUuid(UUID.randomUUID().toString());	// Default Value : Random UUID generated
 		userService.save(user);
 	}
 	
@@ -62,5 +64,14 @@ public class UserRestController {
 	public RoleModel getUserRoleByUsername(@PathVariable String username) {
 		return userService.getRoleByUsername(username);
 	}
+	
+	// for UUID using sample, won't be use in angular
+	
+	@GetMapping(value = "/uuid/{uuid}")
+	public UserModel findUserByUUID(@PathVariable String uuid) {
+		return userService.getUserByUUID(uuid); //--------------------------------
+	}
+	
+	// for UUID using sample, won't be use in angular
 	
 }

@@ -10,6 +10,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.GenericGenerator;
+
 @Entity
 @Table(name = "users")
 public class UserModel {
@@ -18,6 +20,11 @@ public class UserModel {
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
+	
+	@GeneratedValue(generator = "uuid2")
+	@GenericGenerator(name = "uuid2", strategy = "uuid2")
+	@Column(name = "uuid")
+	private String uuid;
 	
 	@Column(name = "username")
 	private String username;
@@ -46,6 +53,15 @@ public class UserModel {
 		this.id = id;
 		this.username = username;
 		this.password = password;
+		this.role = role;
+	}
+	
+	public UserModel(long id, String uuid, String username, String password, boolean enabled, RoleModel role) {
+		this.id = id;
+		this.uuid = uuid;
+		this.username = username;
+		this.password = password;
+		this.enabled = enabled;
 		this.role = role;
 	}
 
@@ -87,6 +103,14 @@ public class UserModel {
 
 	public void setRole(RoleModel role) {
 		this.role = role;
+	}
+
+	public String getUuid() {
+		return uuid;
+	}
+
+	public void setUuid(String uuid) {
+		this.uuid = uuid;
 	}
 
 	@Override

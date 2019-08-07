@@ -20,5 +20,7 @@ public interface UserService {
 	public RoleModel findRoleById(int roleId);
 	
 	public RoleModel getRoleByUsername(String username);
+
+	public UserModel getUserByUUID(String uuid);
 	
 }

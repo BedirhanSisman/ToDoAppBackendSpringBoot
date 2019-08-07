@@ -48,6 +48,7 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
 
 	private UsernamePasswordAuthenticationToken getAuthentication(HttpServletRequest request) {
 		String token = request.getHeader(HEADER_STRING);
+		
 		if (token != null) {
 			// parse the token.
 			Map<String, Claim> claimMaps = JWT.require(Algorithm.HMAC512(SECRET.getBytes())).build()
@@ -61,8 +62,10 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
 		        authorities.add(new SimpleGrantedAuthority(role));
 				return new UsernamePasswordAuthenticationToken(name, null, authorities);
 			}
+			
 			return null;
 		}
+		
 		return null;
 	}
 }

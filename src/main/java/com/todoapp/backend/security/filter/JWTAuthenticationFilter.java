@@ -61,14 +61,14 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 		
 		
 		String token = JWT.create()
-				//.withSubject(((User) auth.getPrincipal()).getUsername())
 				.withClaim("name", ((User) auth.getPrincipal()).getUsername())
 				.withClaim("role", role[0])
 				.withSubject(((User) auth.getPrincipal()).getUsername())
                 .withExpiresAt(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
                 .sign(HMAC512(SECRET.getBytes()));
+		
 		System.out.println("Token : " + token);
-		response.addHeader("Access-Control-Expose-Headers", "Authorization");// Front End kısmında Authorization bilgisine erişebilmek için ekliyoruz.
+		response.addHeader("Access-Control-Expose-Headers", "Authorization"); // Front End kısmında Authorization bilgisine erişebilmek için ekliyoruz.
         response.addHeader(HEADER_STRING, TOKEN_PREFIX + token);
         System.out.println("Response is: " + response.toString());
 	}
